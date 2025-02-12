@@ -1,0 +1,9 @@
+from sqlmodel import Field, SQLModel, Relationship
+from typing import Optional
+from datetime import datetime, timezone
+
+class Model(SQLModel):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    follower_id: int = Field(foreign_key="user.id", index=True)
+    followed_id: int = Field(foreign_key="user.id", index=True)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
