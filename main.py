@@ -35,7 +35,7 @@ app = FastAPI(
 origins = [
     "http://localhost:3000",
     "https://zentriapp.netlify.app",
-    "https://zentri.vercel.app/",
+    "https://zentri.vercel.app",
 ]
 
 app.add_middleware(
