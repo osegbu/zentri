@@ -11,8 +11,7 @@ vote_routes = APIRouter()
     description="Allows a user to vote on a poll for a specific post by providing the post, poll, and user IDs."
 )
 def cast_vote_endpoint(post_id: int, poll_id: int, session: SessionDep, token: dict = Depends(decode_access_token)):
-    print(post_id)
-    # return cast_vote(post_id, token['id'], poll_id, session)
+    return cast_vote(post_id, token['id'], poll_id, session)
 
 @vote_routes.delete(
     "/vote/{post_id}/{poll_id}", 
