@@ -3,10 +3,12 @@ from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from db.db import create_db_and_tables
 from api.route import User, Follow, Post, Like, Bookmark, Vote
+import os
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    create_db_and_tables()
+    if not os.path.exists('database.db'):
+        create_db_and_tables()
     yield
 
 app = FastAPI(
