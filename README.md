@@ -1,28 +1,8 @@
-# Social Media Site - FastAPI Backend
+# Zentri - A Social Media Site - FastAPI Backend
 
-## Overview
+This is the **backend** of Zentri, providing API endpoints for user authentication, post management, likes, comments, and other social media features.
 
-This is the backend of a social media site built using [FastAPI](https://fastapi.tiangolo.com/). It provides API endpoints for user authentication, post management, likes, comments, and other social media features.
-
-## Features
-
-- User authentication (signup, login)
-- Post creation, deletion, and management
-- Replies on posts
-- Like, bookmark, and voting functionality for posts
-- Support for image and poll attachments to posts
-- Follower and following system
-- User profile management
-
-## Technologies Used
-
-- **Framework**: FastAPI
-- **Database**: SQLite
-- **ORM**: SQLModel
-- **Authentication**: JWT
-- **Other Tools**: (Mention any other tools or libraries used, like Pydantic, etc.)
-
-## Installation
+## Getting Started
 
 ### Prerequisites
 
@@ -33,8 +13,8 @@ This is the backend of a social media site built using [FastAPI](https://fastapi
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/osegbu/zentri.git
-   cd <zentri>
+   git clone https://github.com/osegbu/zentri-backend.git
+   cd zentri-backend
    ```
 
 2. Create and activate a virtual environment:
@@ -70,15 +50,19 @@ This is the backend of a social media site built using [FastAPI](https://fastapi
 6. Check out the documentation and endpoints on:
    http://127.0.0.1:8000/docs.
 
+## Frontend Repository
+
+The frontend for this project is built using **Next.js**. You can find the repository for the frontend [here](https://github.com/osegbu/zentri-nexjs).
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue to discuss your ideas.
 
-## Have A Feedback
+## Have A Feedback?
 
 Feel free to reach out to me!
 
-Email: valentineosegbu@gmail.com
-LinkedIn: https://www.linkedin.com/in/obinna-osegbu-746995174/
-Twitter: @obinna_osegbu
-GitHub Issues: You can also open an issue on this repository if it's related to the project.
+- **Email**: [valentineosegbu@gmail.com](mailto:valentineosegbu@gmail.com)
+- **LinkedIn**: [Obinna Osegbu](https://www.linkedin.com/in/obinna-osegbu-746995174/)
+- **Twitter**: [@obinna_osegbu](https://twitter.com/obinna_osegbu)
+- **GitHub Issues**: You can also open an issue on this repository if it's related to the project.
