@@ -19,7 +19,7 @@ def like_post(user_id: int, post_id: int, session: SessionDep):
         ).first()
 
         if is_like:
-            raise HTTPException(status_code=409, detail="User has already liked this post")
+            return fetch_post(post_id, user_id, session)
         
         like = Like(user_id=user_id, post_id=post_id)
         session.add(like)
@@ -47,7 +47,7 @@ def unlike_post(user_id: int, post_id: int, session: SessionDep):
         ).first()
 
         if not is_like:
-            raise HTTPException(status_code=404, detail="User has not liked this post")
+            return fetch_post(post_id, user_id, session)
         
         session.delete(is_like)
         session.commit()

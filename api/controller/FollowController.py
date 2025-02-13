@@ -20,7 +20,7 @@ def follow_user(follower_id: int, followed_id: int, session: SessionDep):
         ).first()
 
         if existing_follow:
-            raise HTTPException(status_code=400, detail="Already following this user")
+            return {"response": "Successfully followed user"}
         
         new_follow = Follow(follower_id=follower_id, followed_id=followed_id)
         session.add(new_follow)
@@ -51,7 +51,7 @@ def unfollow_user(follower_id: int, followed_id: int, session: SessionDep):
         ).first()
 
         if not existing_follow:
-            raise HTTPException(status_code=404, detail="Not following this user")
+            return {"response": "Successfully followed user"}
 
         session.delete(existing_follow)
         session.commit()

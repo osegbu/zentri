@@ -18,7 +18,7 @@ def bookmark_post(user_id: int, post_id: int, session: SessionDep):
         ).first()
 
         if is_booked:
-            raise HTTPException(status_code=409, detail="User has already bookmarked this post")
+            return fetch_post(post_id, user_id, session)
         
         bookmark = Bookmark(post_id=post_id, user_id=user_id)
         session.add(bookmark)
@@ -46,7 +46,7 @@ def remove_bookmark_post(user_id: int, post_id: int, session: SessionDep):
         ).first()
 
         if not is_booked:
-            raise HTTPException(status_code=404, detail="User has not bookmarked this post")
+            return fetch_post(post_id, user_id, session)
         
         session.delete(is_booked)
         session.commit()

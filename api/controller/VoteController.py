@@ -48,7 +48,7 @@ def remove_vote(post_id:int, user_id: int, poll_id: int, session: SessionDep):
         ).first()
 
         if not existing_vote:
-            raise HTTPException(status_code=404, detail="Vote not found")
+            return fetch_post(post_id, user_id, session)
 
         session.delete(existing_vote)
         session.commit()
