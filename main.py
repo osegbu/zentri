@@ -34,7 +34,7 @@ app = FastAPI(
 
 origins = [
     "http://localhost:3000",
-    "https://your-nextjs-app.com",
+    "https://zentriapp.netlify.app",
 ]
 
 app.add_middleware(
