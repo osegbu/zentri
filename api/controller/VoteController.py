@@ -57,4 +57,4 @@ def remove_vote(post_id:int, user_id: int, poll_id: int, session: SessionDep):
 
     except Exception as e:
         session.rollback()
-        raise HTTPException(status_code=e.status_code, detail=str(e.detail)) from e
+        raise HTTPException(status_code=500, detail="Failed to delete vote") from e
