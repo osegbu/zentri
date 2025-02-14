@@ -63,6 +63,6 @@ Contributions are welcome! Please feel free to submit a Pull Request or open an 
 Feel free to reach out to me!
 
 - **Email**: [valentineosegbu@gmail.com](mailto:valentineosegbu@gmail.com)
-- **LinkedIn**: [Obinna Osegbu](https://www.linkedin.com/in/obinna-osegbu-746995174/)
+- **LinkedIn**: [Obinna Osegbu](https://www.linkedin.com/in/obinna-osegbu-4aa304200/)
 - **Twitter**: [@obinna_osegbu](https://twitter.com/obinna_osegbu)
 - **GitHub Issues**: You can also open an issue on this repository if it's related to the project.
