@@ -200,15 +200,12 @@ def fetch_all_posts(current_user: int, session: SessionDep, offset: int = Query(
 def update_post(post_id: int, current_user: int, post_data: UpdatePost, session: SessionDep):
     try:
         post = session.get(Post, post_id)
-
         if not post:
             raise HTTPException(status_code=404, detail="Post not found")
-        
-        user = session.get(User, post.user_id)
 
+        user = session.get(User, post.user_id)
         if not user:
             raise HTTPException(status_code=400, detail="User not found")
-
         if post.user_id != current_user:
             raise HTTPException(status_code=403, detail="Unauthorized to update this post")
 
@@ -216,8 +213,7 @@ def update_post(post_id: int, current_user: int, post_data: UpdatePost, session:
         post.sqlmodel_update(post_data_dict)
         session.add(post)
         session.commit()
-        session.refresh(post)
-        
+
         prev_images = session.exec(select(PostImage).where(PostImage.post_id == post.id)).all()
         for prev_image in prev_images:
             session.delete(prev_image)
@@ -225,12 +221,16 @@ def update_post(post_id: int, current_user: int, post_data: UpdatePost, session:
         prev_polls = session.exec(select(Poll).where(Poll.post_id == post.id)).all()
         for prev_poll in prev_polls:
             session.delete(prev_poll)
-        
+
+        session.commit()
+
         if post_data.image:
             post.images = [PostImage(image_url=image_url, post_id=post.id) for image_url in post_data.image]
 
         if post_data.poll:
-            post.polls = [Poll(option=option, post_id=post.id) for option in post_data.poll]
+            with session.no_autoflush:
+                post.polls = [Poll(option=option, post_id=post.id) for option in post_data.poll]
+            session.commit()
 
         bookmark = session.exec(
             select(Bookmark).where(Bookmark.post_id == post.id, Bookmark.user_id == current_user)
@@ -239,21 +239,17 @@ def update_post(post_id: int, current_user: int, post_data: UpdatePost, session:
         poll_responses = []
         for poll in post.polls:
             vote_count = session.exec(select(Vote).where(Vote.poll_id == poll.id)).all()
-            
             user_vote = session.exec(
                 select(Vote).where(Vote.poll_id == poll.id, Vote.user_id == current_user)
             ).first()
-            
             poll_responses.append(PollResponseModel(
                 id=poll.id,
                 option=poll.option,
                 votes=len(vote_count),
-                is_voted=bool(user_vote) 
+                is_voted=bool(user_vote)
             ))
 
-                
         session.commit()
-
 
         author = Auth(
             id=user.id,
@@ -264,7 +260,7 @@ def update_post(post_id: int, current_user: int, post_data: UpdatePost, session:
             bio=user.bio,
             location=user.location
         )
-        
+
         def build_response(post):
             return ResponseModel(
                 id=post.id,
