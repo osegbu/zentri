@@ -52,7 +52,7 @@ This is the **backend** of Zentri, providing API endpoints for user authenticati
 
 ## Frontend Repository
 
-The frontend for this project is built using **Next.js**. You can find the repository for the frontend [here](https://github.com/osegbu/zentri-nexjs).
+The frontend for this project is built using **Next.js**. You can find the repository for the frontend [here](https://github.com/osegbu/zentri-nextjs).
 
 ## Contributing
 
